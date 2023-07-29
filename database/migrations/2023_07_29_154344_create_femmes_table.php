@@ -14,17 +14,16 @@ class CreateFemmesTable extends Migration
     public function up()
     {
         Schema::create('femmes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
+            $table->string('nomFemm');
+            $table->string('prenFemm');
+            $table->date('dateNFemm');
+            $table->string('lieuNFemm');
+            $table->string('sexeFemm');
+            $table->string('telFemm');
+            $table->string('image');
             $table->SoftDeletes();
             $table->timestamps();
-
-
-            $table->unsignedBigInteger('habitant_id');
- 
-            $table->foreign('habitant_id')->references('id')->on('habitants');
-
- 
-       
         });
     }
 

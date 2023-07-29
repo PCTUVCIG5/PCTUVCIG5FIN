@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Homme
  * @package App\Models
- * @version July 16, 2023, 5:39 pm UTC
+ * @version July 29, 2023, 3:39 pm UTC
  *
  * @property \App\Models\Habitant $habitant
  * @property \Illuminate\Database\Eloquent\Collection $divoces

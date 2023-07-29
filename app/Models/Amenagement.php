@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Amenagement
  * @package App\Models
- * @version July 16, 2023, 5:39 pm UTC
+ * @version July 29, 2023, 12:07 am UTC
  *
  * @property \App\Models\Habitant $habitant
  * @property string $dateAme
- * @property string $ancienQtier
+ * @property string $Qtier
+ * @property string $descriptionAmen
+ * @property integer $type
  * @property integer $habitant_id
  */
 class Amenagement extends Model
@@ -34,7 +36,9 @@ class Amenagement extends Model
 
     public $fillable = [
         'dateAme',
-        'ancienQtier',
+        'Qtier',
+        'descriptionAmen',
+        'type',
         'habitant_id'
     ];
 
@@ -46,7 +50,9 @@ class Amenagement extends Model
     protected $casts = [
         'id' => 'integer',
         'dateAme' => 'date',
-        'ancienQtier' => 'string',
+        'Qtier' => 'string',
+        'descriptionAmen' => 'string',
+        'type' => 'integer',
         'habitant_id' => 'integer'
     ];
 
@@ -57,11 +63,13 @@ class Amenagement extends Model
      */
     public static $rules = [
         'dateAme' => 'required',
-        'ancienQtier' => 'required|string|max:191',
+        'Qtier' => 'required|string|max:191',
+        'descriptionAmen' => 'required|string|max:255',
+        'type' => 'integer',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
-        'habitant_id' => 'required'
+        'habitant_id' => 'required|unique'
     ];
 
     /**

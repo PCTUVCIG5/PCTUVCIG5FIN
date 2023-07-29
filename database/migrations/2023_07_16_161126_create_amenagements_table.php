@@ -16,7 +16,9 @@ class CreateAmenagementsTable extends Migration
         Schema::create('amenagements', function (Blueprint $table) {
             $table->id();
             $table->date('dateAme');
-            $table->string('ancienQtier');
+            $table->string('Qtier');
+            $table->string('descriptionAmen');
+            $table->string('type');
             $table->SoftDeletes();
             $table->timestamps();
 

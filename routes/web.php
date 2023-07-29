@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExcelCSVController;
+use App\Http\Controllers\AmenagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +78,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('hommes', App\Http\Controllers\HommeController::class);
     
     
-    Route::resource('amenagements', App\Http\Controllers\AmenagementController::class);
+Route::get('/change-status-amenagement/{id}',[AmenagementController::class,'changeStatusAmenagement']);
+Route::resource('amenagements', App\Http\Controllers\AmenagementController::class);
     
     
     Route::resource('demenagements', App\Http\Controllers\DemenagementController::class);
@@ -98,6 +100,17 @@ Route::resource('permissions', App\Http\Controllers\PermissionController::class)
 Route::get('/statut', [App\Http\Controllers\UserController::class, 'show1'])->name('statut');
 
 Route::get('/change-status/{id}',[UserController::class,'changeStatus']);
+
+Route::post('/add-activite', [App\Http\Controllers\ActiviteController::class, 'addActivite'])->name('add.activite');
+
+// test
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('index');
+Route::get('/create', 'ProductController@create')->name('create');
+Route::post('store/', 'ProductController@store')->name('store');
+Route::get('show/{product}', 'ProductController@show')->name('show');
+Route::get('edit/{product}', 'ProductController@edit')->name('edit');
+Route::put('edit/{product}','ProductController@update')->name('update');
+Route::delete('/{product}','ProductController@destroy')->name('destroy');
+
+
 });
-
-

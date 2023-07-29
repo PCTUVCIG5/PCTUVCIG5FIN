@@ -23,11 +23,11 @@
             <td>{{ $habitant->lieuNHabi }}</td>
             <td>{{ $habitant->sexeHabi }}</td>
             <td>{{ $habitant->telHabi }}</td>
-            <td><img class="img-circle img-bordered-sm" src="/images/{{ $habitant->image }}" width="50px" alt="user image"></td>
+            <td><img class="img-circle img-bordered-sm" src="{{ Storage::url($habitant->image) }}" width="50px" alt="user image"></td>
                 <td width="120">
                     {!! Form::open(['route' => ['habitants.destroy', $habitant->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('habitants.show', [$habitant->id]) }}"
+                        <a href="{{ route('habitants.show', [$habitant->id]) }}" 
                            class='btn btn-default btn-xs'>
                             <i class="far fa-eye"></i>
                         </a>

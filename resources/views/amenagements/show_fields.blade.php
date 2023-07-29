@@ -6,7 +6,7 @@
 
 <!-- Ancienqtier Field -->
 <div class="col-sm-12">
-    {!! Form::label('ancienQtier', 'Ancienqtier:') !!}
+    {!! Form::label('Qtier', 'Ancienqtier:') !!}
     <p>{{ $amenagement->ancienQtier }}</p>
 </div>
 

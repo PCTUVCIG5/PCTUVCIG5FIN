@@ -7,6 +7,8 @@ use Response;
 use App\Models\Habitant;
 use App\Models\Amenagement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\AmenagementRepository;
 use App\Http\Requests\CreateAmenagementRequest;
@@ -29,17 +31,10 @@ class AmenagementController extends AppBaseController
      *
      * @return Response
      */
-    // public function index(Request $request)
-    // {
-    //     $amenagements = $this->amenagementRepository->all();
-
-    //     return view('amenagements.index')
-    //         ->with('amenagements', $amenagements);
-    // }
-
-    public function index()
+    public function index(Request $request)
     {
-        $amenagements = Amenagement::with('habitant')->get();
+
+        $amenagements = Amenagement::with('habitant')->where('type',1)->get();
         $habitants = Habitant::with('amenagements')->get();
         
         return view('amenagements.index', compact('amenagements', 'habitants'));
@@ -52,7 +47,10 @@ class AmenagementController extends AppBaseController
      */
     public function create()
     {
-        return view('amenagements.create');
+        $habitants = DB::table('habitants')
+            ->get();
+
+        return view('amenagements.create',compact('habitants'));
     }
 
     /**
@@ -62,15 +60,32 @@ class AmenagementController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateAmenagementRequest $request)
+    // public function store(CreateAmenagementRequest $request)
+    // {
+    //     $input = $request->all();
+
+    //     $amenagement = $this->amenagementRepository->create($input);
+
+    //     Flash::success('Amenagement saved successfully.');
+
+    //     return redirect(route('amenagements.index'));
+
+    // }
+
+    public function store(Request $request): RedirectResponse
     {
+        $this->validate($request, [
+            'dateAme' => 'required',
+            'Qtier' => 'required',
+            'descriptionAmen' => 'required',
+            'habitant_id' => 'required|unique:amenagements,habitant_id',
+        ]);
+    
         $input = $request->all();
-
-        $amenagement = $this->amenagementRepository->create($input);
-
-        Flash::success('Amenagement saved successfully.');
-
-        return redirect(route('amenagements.index'));
+        $amenagement = Amenagement::create($input);
+    
+        return redirect()->route('amenagements.index')
+                        ->with('success','Amenagement saved successfully');
     }
 
     /**
@@ -162,5 +177,16 @@ class AmenagementController extends AppBaseController
         Flash::success('Amenagement deleted successfully.');
 
         return redirect(route('amenagements.index'));
+    }
+
+    public function changeStatusAmenagement($id){
+        $getStatus = Amenagement::select('type')->where('id',$id)->first();
+        if($getStatus->type==1){
+            $type = 0;
+        }else{
+            $type = 1;
+        }
+        Amenagement::where('id',$id)->update(['type'=>$type]);
+        return redirect()->back();
     }
 }

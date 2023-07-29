@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class NaissanceRepository
  * @package App\Repositories
- * @version July 16, 2023, 5:38 pm UTC
+ * @version July 29, 2023, 12:06 pm UTC
 */
 
 class NaissanceRepository extends BaseRepository
@@ -17,26 +17,13 @@ class NaissanceRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'prefecture',
-        'centretatcivil',
-        'registre',
-        'acte',
-        'date_acte',
-        'nom',
-        'prenom',
-        'delivre_a',
-        'delivre_le',
-        'delivre_an',
-        'num_serie',
-        'naissance_jour_moi',
-        'naissance_an',
-        'naissance_heure',
-        'naissance_minuite',
-        'naissance_nom_prenom',
-        'naissance_lieu',
-        'naissance_sexe',
-        'declaration_faite_par',
-        'declaration_recue_pa',
+        'nom_nais',
+        'prenoms_nais',
+        'dateNaissance_nais',
+        'lieuNaissance_nais',
+        'mode_nais',
+        'lieuHabitation_nais',
+        'statutChef',
         'homme_id',
         'femme_id'
     ];

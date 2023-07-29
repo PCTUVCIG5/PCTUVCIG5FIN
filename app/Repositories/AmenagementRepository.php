@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class AmenagementRepository
  * @package App\Repositories
- * @version July 16, 2023, 5:39 pm UTC
+ * @version July 29, 2023, 12:07 am UTC
 */
 
 class AmenagementRepository extends BaseRepository
@@ -18,7 +18,9 @@ class AmenagementRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'dateAme',
-        'ancienQtier',
+        'Qtier',
+        'descriptionAmen',
+        'type',
         'habitant_id'
     ];
 

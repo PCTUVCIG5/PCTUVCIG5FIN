@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
-                       href="{{ route('demenagements.create') }}">
-                        Add New
+                       href="{{ route('amenagements.index') }}">
+                        VOIR LES AMENAGEMENTS
                     </a>
                 </div>
             </div>

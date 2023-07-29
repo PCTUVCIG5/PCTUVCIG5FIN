@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateDemenagementRequest;
-use App\Http\Requests\UpdateDemenagementRequest;
-use App\Repositories\DemenagementRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Habitant;
+use App\Models\Amenagement;
+use App\Models\Demenagement;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\DemenagementRepository;
+use App\Http\Requests\CreateDemenagementRequest;
+use App\Http\Requests\UpdateDemenagementRequest;
 
 class DemenagementController extends AppBaseController
 {
@@ -29,10 +33,10 @@ class DemenagementController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $demenagements = $this->demenagementRepository->all();
-
-        return view('demenagements.index')
-            ->with('demenagements', $demenagements);
+        $amenagements = Amenagement::with('habitant')->where('type',0)->get();
+        $habitants = Habitant::with('amenagements')->get();
+        
+        return view('demenagements.index', compact('amenagements', 'habitants'));
     }
 
     /**

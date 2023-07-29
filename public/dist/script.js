@@ -45,3 +45,4 @@ Demo.prototype.disable = function(selector) {
 }
 
 demo = new Demo()
+

@@ -14,17 +14,16 @@ class CreateHommesTable extends Migration
     public function up()
     {
         Schema::create('hommes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('idHom');
+            $table->id();
+            $table->string('nomHomm');
+            $table->string('prenHomm');
+            $table->date('dateNHomm');
+            $table->string('lieuNHomm');
+            $table->string('sexeHomm');
+            $table->string('telHomm');
+            $table->string('image');
             $table->SoftDeletes();
             $table->timestamps();
-
-
-            $table->unsignedBigInteger('habitant_id');
- 
-            $table->foreign('habitant_id')->references('id')->on('habitants');
-
-
         });
     }
 

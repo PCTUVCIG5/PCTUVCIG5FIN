@@ -12,7 +12,7 @@
         "inView": false
     },
     {
-        "name": "prefecture",
+        "name": "nom_nais",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",
@@ -24,7 +24,7 @@
         "inView": true
     },
     {
-        "name": "centretatcivil",
+        "name": "prenoms_nais",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",
@@ -36,31 +36,7 @@
         "inView": true
     },
     {
-        "name": "registre",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "acte",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "date_acte",
+        "name": "dateNaissance_nais",
         "dbType": "date",
         "htmlType": "date",
         "validations": "required",
@@ -72,7 +48,7 @@
         "inView": true
     },
     {
-        "name": "nom",
+        "name": "lieuNaissance_nais",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",
@@ -84,7 +60,7 @@
         "inView": true
     },
     {
-        "name": "prenom",
+        "name": "mode_nais",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",
@@ -96,7 +72,7 @@
         "inView": true
     },
     {
-        "name": "delivre_a",
+        "name": "lieuHabitation_nais",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",
@@ -108,139 +84,7 @@
         "inView": true
     },
     {
-        "name": "delivre_le",
-        "dbType": "date",
-        "htmlType": "date",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "delivre_an",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "num_serie",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_jour_moi",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_an",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_heure",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_minuite",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_nom_prenom",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_lieu",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "naissance_sexe",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "declaration_faite_par",
-        "dbType": "string,191",
-        "htmlType": "text",
-        "validations": "required|string|max:191|string|max:191",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "declaration_recue_pa",
+        "name": "statutChef",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",

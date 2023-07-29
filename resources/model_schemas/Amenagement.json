@@ -24,10 +24,34 @@
         "inView": true
     },
     {
-        "name": "ancienQtier",
+        "name": "Qtier",
         "dbType": "string,191",
         "htmlType": "text",
         "validations": "required|string|max:191|string|max:191",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "descriptionAmen",
+        "dbType": "string,255",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "type",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": "required|integer|integer",
         "searchable": true,
         "fillable": true,
         "primary": false,

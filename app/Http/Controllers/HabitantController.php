@@ -61,31 +61,30 @@ class HabitantController extends AppBaseController
      * @return Response
      */
 
-     public function store(Request $request): RedirectResponse
+     public function store(Request $request)
      {
-         $request->validate([
-             'nomHabi' => 'required',
-             'prenHabi' => 'required',
-             'dateNHabi' => 'required',
-             'lieuNHabi' => 'required',
-             'sexeHabi' => 'required',
-             'telHabi' => 'required',
-             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $request->validate([
+            'nomHabi' => 'required',
+            'prenHabi' => 'required',
+            'dateNHabi' => 'required',
+            'lieuNHabi' => 'required',
+            'sexeHabi' => 'required',
+            'telHabi' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ]);
-     
-         $input = $request->all();
-     
-         if ($image = $request->file('image')) {
-             $destinationPath = 'images/';
-             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-             $image->move($destinationPath, $profileImage);
-             $input['image'] = "$profileImage";
-         }
-       
-         Habitant::create($input);
-        
+         $path = $request->file('image')->store('public/images');
+         $habitant = new Habitant;
+         $habitant->nomHabi = $request->nomHabi;
+         $habitant->prenHabi = $request->prenHabi;
+         $habitant->dateNHabi = $request->dateNHabi;
+         $habitant->lieuNHabi = $request->lieuNHabi;
+         $habitant->sexeHabi = $request->sexeHabi;
+         $habitant->telHabi = $request->telHabi;
+         $habitant->image = $path;
+         $habitant->save();
+      
          return redirect()->route('habitants.index')
-                         ->with('success','Product created successfully.');
+                         ->with('success','Post has been created successfully.');
      }
 
 
@@ -148,24 +147,7 @@ class HabitantController extends AppBaseController
      *
      * @return Response
      */
-    // public function update($id, UpdateHabitantRequest $request)
-    // {
-    //     $habitant = $this->habitantRepository->find($id);
-
-    //     if (empty($habitant)) {
-    //         Flash::error('Habitant not found');
-
-    //         return redirect(route('habitants.index'));
-    //     }
-
-    //     $habitant = $this->habitantRepository->update($request->all(), $id);
-
-    //     Flash::success('Habitant updated successfully.');
-
-    //     return redirect(route('habitants.index'));
-    // }
-
-    public function update(Request $request, Habitant $habitant): RedirectResponse
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nomHabi' => 'required',
@@ -173,26 +155,29 @@ class HabitantController extends AppBaseController
             'dateNHabi' => 'required',
             'lieuNHabi' => 'required',
             'sexeHabi' => 'required',
-            'telHabi' => 'required'
+            'telHabi' => 'required',
         ]);
-    
-        $input = $request->all();
-    
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
+        
+        $habitant = Habitant::find($id);
+        if($request->hasFile('image')){
+            $request->validate([
+              'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $path = $request->file('image')->store('public/images');
+            $habitant->image = $path;
         }
-            
-        $habitant->update($input);
-      
+        $habitant->nomHabi = $request->nomHabi;
+        $habitant->prenHabi = $request->prenHabi;
+        $habitant->dateNHabi = $request->dateNHabi;
+        $habitant->lieuNHabi = $request->lieuNHabi;
+        $habitant->sexeHabi = $request->sexeHabi;
+        $habitant->telHabi = $request->telHabi;
+        $habitant->save();
+    
         return redirect()->route('habitants.index')
-                        ->with('success','habitants mis à jour avec succès');
+                        ->with('success','Post updated successfully');
     }
-  
+
     /**
      * Remove the specified resource from storage.
      */
@@ -222,4 +207,6 @@ class HabitantController extends AppBaseController
 
         return redirect(route('habitants.index'));
     }
+
+
 }

@@ -67,3 +67,23 @@ php artisan make:model Demenagement -mc...............
 php artisan make:model OffreEmploi -mc.......
 php artisan make:model DemandeEmploi -mc
 
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
+php artisan make:migration create_hommes_table
