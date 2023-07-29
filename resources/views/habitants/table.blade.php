@@ -2,7 +2,8 @@
     <table class="table" id="habitants-table">
         <thead>
         <tr>
-            <th>Nomhabi</th>
+        <th>No</th>
+        <th>Nomhabi</th>
         <th>Prenhabi</th>
         <th>Datenhabi</th>
         <th>Lieunhabi</th>
@@ -15,13 +16,14 @@
         <tbody>
         @foreach($habitants as $habitant)
             <tr>
-                <td>{{ $habitant->nomHabi }}</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $habitant->nomHabi }}</td>
             <td>{{ $habitant->prenHabi }}</td>
             <td>{{ $habitant->dateNHabi }}</td>
             <td>{{ $habitant->lieuNHabi }}</td>
             <td>{{ $habitant->sexeHabi }}</td>
             <td>{{ $habitant->telHabi }}</td>
-            <td><img src="/images/{{ $habitant->image }}" width="100px"></td>
+            <td><img class="img-circle img-bordered-sm" src="/images/{{ $habitant->image }}" width="50px" alt="user image"></td>
                 <td width="120">
                     {!! Form::open(['route' => ['habitants.destroy', $habitant->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -41,6 +43,6 @@
         @endforeach
         </tbody>
     </table>
-    {!! $habitants->withQueryString()->links('') !!}
+    {!! $habitants->render() !!}
 
 </div>

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateAmenagementRequest;
-use App\Http\Requests\UpdateAmenagementRequest;
-use App\Repositories\AmenagementRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Habitant;
+use App\Models\Amenagement;
+use Illuminate\Http\Request;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\AmenagementRepository;
+use App\Http\Requests\CreateAmenagementRequest;
+use App\Http\Requests\UpdateAmenagementRequest;
 
 class AmenagementController extends AppBaseController
 {
@@ -27,12 +29,20 @@ class AmenagementController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
-    {
-        $amenagements = $this->amenagementRepository->all();
+    // public function index(Request $request)
+    // {
+    //     $amenagements = $this->amenagementRepository->all();
 
-        return view('amenagements.index')
-            ->with('amenagements', $amenagements);
+    //     return view('amenagements.index')
+    //         ->with('amenagements', $amenagements);
+    // }
+
+    public function index()
+    {
+        $amenagements = Amenagement::with('habitant')->get();
+        $habitants = Habitant::with('amenagements')->get();
+        
+        return view('amenagements.index', compact('amenagements', 'habitants'));
     }
 
     /**

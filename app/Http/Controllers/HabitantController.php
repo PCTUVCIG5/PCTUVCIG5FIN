@@ -21,10 +21,10 @@ class HabitantController extends AppBaseController
     {
         $this->habitantRepository = $habitantRepo;
 
-        $this->middleware('permission:habitant-list|habitant-create|habitant-edit|habitant-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:habitant-create', ['only' => ['create','store']]);
-        $this->middleware('permission:habitant-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:habitant-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:liste|creer|supprimer|modifier', ['only' => ['index','store']]);
+        $this->middleware('permission:creer', ['only' => ['create','store']]);
+        $this->middleware('permission:modifier', ['only' => ['edit','update']]);
+        $this->middleware('permission:supprimer', ['only' => ['destroy']]);
     }
 
     /**
@@ -38,14 +38,9 @@ class HabitantController extends AppBaseController
 
     public function index(Request $request)
     {
-        $habitants = $this->habitantRepository->all();
-
-        $habitants = Habitant::paginate(10);
-  
-        return view('habitants.index', compact('habitants'));
-
-        // return view('habitants.index')
-        //     ->with('habitants', $habitants);
+        $habitants = Habitant::orderBy('id','DESC')->paginate(5);
+        return view('habitants.index',compact('habitants'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

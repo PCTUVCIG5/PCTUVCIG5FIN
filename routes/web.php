@@ -95,6 +95,9 @@ Route::get('export-excel-csv-file/{slug}', [ExcelCSVController::class, 'exportEx
 
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 
+Route::get('/statut', [App\Http\Controllers\UserController::class, 'show1'])->name('statut');
+
+Route::get('/change-status/{id}',[UserController::class,'changeStatus']);
 });
 
 

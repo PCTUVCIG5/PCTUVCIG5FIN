@@ -2,15 +2,15 @@
     
 namespace App\Http\Controllers;
     
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
 use DB;
+use Log;
 use Hash;
+use Toastr;
+use App\Models\User;
 use Illuminate\Support\Arr;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
     
 class UserController extends Controller
 {
@@ -19,19 +19,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-     function __construct()
-     {
-          $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
-          $this->middleware('permission:user-create', ['only' => ['create','store']]);
-          $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-          $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-     }
-
-    public function index(Request $request): View
+    public function index(Request $request)
     {
-        $data = User::latest()->paginate(5);
-  
+        $data = User::orderBy('id','DESC')->paginate(5);
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -41,7 +31,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(): View
+    public function create()
     {
         $roles = Role::pluck('name','name')->all();
         return view('users.create',compact('roles'));
@@ -53,7 +43,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -78,7 +68,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id): View
+    public function show($id)
     {
         $user = User::find($id);
         return view('users.show',compact('user'));
@@ -90,7 +80,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id): View
+    public function edit($id)
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
@@ -106,7 +96,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -138,10 +128,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id): RedirectResponse
+    public function destroy($id)
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
+    }
+
+    public function changeStatus($id){
+        $getStatus = User::select('status')->where('id',$id)->first();
+        if($getStatus->status==1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        User::where('id',$id)->update(['status'=>$status]);
+        return redirect()->back();
     }
 }

@@ -8,7 +8,7 @@
             <h2>Users Management</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User </a>
         </div>
     </div>
 </div>
@@ -23,11 +23,13 @@
 
 <table class="table table-bordered">
  <tr>
-   <th>No</th>
+ <th width="1px">No</th>
    <th>Name</th>
    <th>Email</th>
-   <th>Roles</th>
-   <th width="280px">Action</th>
+   <th width="1px">Roles</th>
+   <th width="1px"></th>
+   <th width="1px">Action</th>
+   <th width="1px">statut</th>
  </tr>
  @foreach ($data as $key => $user)
   <tr>
@@ -42,19 +44,46 @@
       @endif
     </td>
     <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
+        @if(Cache::has('is_online' . $user->id))
+            <div class="online-indicator">
+            <span class="blink"></span>
+            </div>
+        @else
+        <div class="online-indicator1">
+            <span class="blink1"></span>
+            </div>
+        @endif
     </td>
+    <td>
+    {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+    <div class='btn-group'>
+        <a href="{{ route('users.show', [$user->id]) }}"
+            class='btn btn-default btn-xs'>
+            <i class="far fa-eye"></i>
+        </a>
+        <a href="{{ route('users.edit', [$user->id]) }}"
+            class='btn btn-success btn-xs'>
+            <i class="far fa-edit"></i>
+        </a>
+        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+    </div>
+    {!! Form::close() !!}
+
+    </td>
+    <td>
+    @if($user->status==1)
+  <a href="{{ url('change-status/'.$user->id) }}" onclick="return confirm('Voulez-vous desactiver {{ $user->name }}?')" class="btn btn-sm btn-success">Active</a>
+  @else
+  <a href="{{ url('change-status/'.$user->id) }}" onclick="return confirm('Voulez-vous activer {{ $user->name }}?')" class="btn btn-sm btn-danger">Inactive</a>
+  @endif
+   </td>
+
   </tr>
  @endforeach
 </table>
 
 
+
 {!! $data->render() !!}
 
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endsection

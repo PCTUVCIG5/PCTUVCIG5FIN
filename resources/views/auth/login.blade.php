@@ -60,6 +60,11 @@
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+                @if (session('error'))
+                <div class="alert alert-danger">
+                        {{ session('error') }}
+                </div>
+                @endif
 
                 <div class="input-group mb-3">
                     <input type="password"

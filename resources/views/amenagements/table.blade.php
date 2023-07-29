@@ -2,18 +2,26 @@
     <table class="table" id="amenagements-table">
         <thead>
         <tr>
-            <th>Dateame</th>
-        <th>Ancienqtier</th>
-        <th>Habitant Id</th>
-            <th colspan="3">Action</th>
+        <th>PHOTO</th>
+        <th>NOM</th>
+        <th>PRENOMS</th>
+        <th>CIVILITE</th>
+        <th>CONTACT</th>   
+        <th>DATE D'ARRIVEE</th>
+        <th>ANCIEN QUARTIER</th>
+        <th colspan="3">Action</th>
         </tr>
         </thead>
         <tbody>
         @foreach($amenagements as $amenagement)
             <tr>
-                <td>{{ $amenagement->dateAme }}</td>
+            <td><img src="/images/{{ $amenagement->habitant->image }}" width="100px"></td>
+            <td>{{ $amenagement->habitant->nomHabi }}</td>
+            <td>{{ $amenagement->habitant->prenHabi }}</td>
+            <td>{{ $amenagement->habitant->sexeHabi }}</td>
+            <td>{{ $amenagement->habitant->telHabi }}</td>
             <td>{{ $amenagement->ancienQtier }}</td>
-            <td>{{ $amenagement->habitant_id }}</td>
+            <td>{{ $amenagement->dateAme }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['amenagements.destroy', $amenagement->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
