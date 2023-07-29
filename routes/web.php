@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AcceuilController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExcelCSVController;
+use App\Http\Controllers\NaissanceController;
 use App\Http\Controllers\AmenagementController;
 
 /*
@@ -20,8 +22,10 @@ use App\Http\Controllers\AmenagementController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('acceuil');
 });
+
+Route::get('/', [AcceuilController::class, 'index'])->name('index');
 
 Auth::routes();
 
@@ -79,6 +83,7 @@ Route::group(['middleware' => ['auth']], function() {
     
     
 Route::get('/change-status-amenagement/{id}',[AmenagementController::class,'changeStatusAmenagement']);
+Route::get('/change-status-naissance/{id}',[NaissanceController::class,'changeStatusNaissance']);
 Route::resource('amenagements', App\Http\Controllers\AmenagementController::class);
     
     

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Femme;
+use App\Models\Homme;
+use App\Models\Naissance;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

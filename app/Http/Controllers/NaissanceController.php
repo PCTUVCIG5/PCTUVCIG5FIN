@@ -34,7 +34,8 @@ class NaissanceController extends AppBaseController
     public function index(Request $request)
     {
 
-        $naissances = Naissance::with('homme','femme')->get();
+        // $naissances = Naissance::with('homme')->where('statutchef',1)->get();
+        $naissances = Naissance::with('homme')->get();
         $hommes = Homme::with('naissances')->get();
         $femmes = Femme::with('naissances')->get();
         
@@ -163,5 +164,16 @@ class NaissanceController extends AppBaseController
         Flash::success('Naissance deleted successfully.');
 
         return redirect(route('naissances.index'));
+    }
+
+    public function changeStatusNaissance($id){
+        $getStatus = Naissance::select('statutchef')->where('id',$id)->first();
+        if($getStatus->statutchef==1){
+            $statutchef = 0;
+        }else{
+            $statutchef = 1;
+        }
+        Naissance::where('id',$id)->update(['statutchef'=>$statutchef]);
+        return redirect()->back();
     }
 }
