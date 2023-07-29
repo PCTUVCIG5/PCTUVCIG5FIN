@@ -9,13 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Femme
  * @package App\Models
- * @version July 16, 2023, 5:39 pm UTC
+ * @version July 29, 2023, 4:53 pm UTC
  *
- * @property \App\Models\Habitant $habitant
  * @property \Illuminate\Database\Eloquent\Collection $divoces
  * @property \Illuminate\Database\Eloquent\Collection $mariages
  * @property \Illuminate\Database\Eloquent\Collection $naissances
- * @property integer $habitant_id
+ * @property string $nomFemm
+ * @property string $prenFemm
+ * @property string $dateNFemm
+ * @property string $lieuNFemm
+ * @property string $sexeFemm
+ * @property string $telFemm
+ * @property string $image
  */
 class Femme extends Model
 {
@@ -34,7 +39,13 @@ class Femme extends Model
 
 
     public $fillable = [
-        'habitant_id'
+        'nomFemm',
+        'prenFemm',
+        'dateNFemm',
+        'lieuNFemm',
+        'sexeFemm',
+        'telFemm',
+        'image'
     ];
 
     /**
@@ -44,7 +55,13 @@ class Femme extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'habitant_id' => 'integer'
+        'nomFemm' => 'string',
+        'prenFemm' => 'string',
+        'dateNFemm' => 'date',
+        'lieuNFemm' => 'string',
+        'sexeFemm' => 'string',
+        'telFemm' => 'string',
+        'image' => 'string'
     ];
 
     /**
@@ -53,19 +70,17 @@ class Femme extends Model
      * @var array
      */
     public static $rules = [
+        'nomFemm' => 'required|string|max:191',
+        'prenFemm' => 'required|string|max:191',
+        'dateNFemm' => 'required',
+        'lieuNFemm' => 'required|string|max:191',
+        'sexeFemm' => 'required|string|max:191',
+        'telFemm' => 'required|string|max:191',
+        'image' => 'required|string|max:191',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'habitant_id' => 'required'
+        'updated_at' => 'nullable'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function habitant()
-    {
-        return $this->belongsTo(\App\Models\Habitant::class, 'habitant_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

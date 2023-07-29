@@ -17,7 +17,7 @@
         <tbody>
         @foreach($naissances as $naissance)
             <tr>
-                <td>{{ $naissance->nom_nais }}</td>
+            <td>{{ $naissance->nom_nais }}</td>
             <td>{{ $naissance->prenoms_nais }}</td>
             <td>{{ $naissance->dateNaissance_nais }}</td>
             <td>{{ $naissance->lieuNaissance_nais }}</td>

@@ -8,9 +8,15 @@
                     <h1>Naissances</h1>
                 </div>
                 <div class="col-sm-6">
+                <a class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-pere"><i class="nav-icon fas fa-user"></i>
+                        LE PERE
+                    </a>&nbsp;&nbsp; 
+                <a class="btn btn-success float-right" data-toggle="modal" data-target="#modal-mere"><i class="nav-icon fas fa-user"></i>
+                        LA MERE
+                    </a>
                     <a class="btn btn-primary float-right"
                        href="{{ route('naissances.create') }}">
-                        Add New
+                        DECLARATION
                     </a>
                 </div>
             </div>
@@ -36,6 +42,8 @@
 
         </div>
     </div>
+    @include('naissances.choixPereModal')
+@include('naissances.choixMereModal')
 
 @endsection
 

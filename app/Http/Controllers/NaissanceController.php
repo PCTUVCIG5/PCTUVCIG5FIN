@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateNaissanceRequest;
-use App\Http\Requests\UpdateNaissanceRequest;
-use App\Repositories\NaissanceRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Femme;
+use App\Models\Homme;
+use App\Models\Naissance;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\NaissanceRepository;
+use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\CreateNaissanceRequest;
+use App\Http\Requests\UpdateNaissanceRequest;
 
 class NaissanceController extends AppBaseController
 {
@@ -29,10 +33,12 @@ class NaissanceController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $naissances = $this->naissanceRepository->all();
 
-        return view('naissances.index')
-            ->with('naissances', $naissances);
+        $naissances = Naissance::with('homme','femme')->get();
+        $hommes = Homme::with('naissances')->get();
+        $femmes = Femme::with('naissances')->get();
+        
+        return view('naissances.index', compact('naissances', 'hommes','femmes'));
     }
 
     /**
@@ -42,6 +48,11 @@ class NaissanceController extends AppBaseController
      */
     public function create()
     {
+        $hommes = DB::table('hommes')->get();
+        $femmes = DB::table('femmes')->get();
+
+    return view('naissances.create',compact('hommes','femmes'));
+
         return view('naissances.create');
     }
 

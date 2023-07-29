@@ -2,14 +2,26 @@
     <table class="table" id="femmes-table">
         <thead>
         <tr>
-            <th>Habitant Id</th>
+            <th>Nomfemm</th>
+        <th>Prenfemm</th>
+        <th>Datenfemm</th>
+        <th>Lieunfemm</th>
+        <th>Sexefemm</th>
+        <th>Telfemm</th>
+        <th>Image</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
         <tbody>
         @foreach($femmes as $femme)
             <tr>
-                <td>{{ $femme->habitant_id }}</td>
+                <td>{{ $femme->nomFemm }}</td>
+            <td>{{ $femme->prenFemm }}</td>
+            <td>{{ $femme->dateNFemm }}</td>
+            <td>{{ $femme->lieuNFemm }}</td>
+            <td>{{ $femme->sexeFemm }}</td>
+            <td>{{ $femme->telFemm }}</td>
+            <td>{{ $femme->image }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['femmes.destroy', $femme->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

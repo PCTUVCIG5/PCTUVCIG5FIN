@@ -60,7 +60,7 @@ class HommeController extends AppBaseController
 
         Flash::success('Homme saved successfully.');
 
-        return redirect(route('hommes.index'));
+        return redirect()->back();
     }
 
     /**
@@ -125,7 +125,7 @@ class HommeController extends AppBaseController
 
         Flash::success('Homme updated successfully.');
 
-        return redirect(route('hommes.index'));
+        return redirect()->back();
     }
 
     /**
@@ -151,6 +151,6 @@ class HommeController extends AppBaseController
 
         Flash::success('Homme deleted successfully.');
 
-        return redirect(route('hommes.index'));
+        return redirect()->back();
     }
 }

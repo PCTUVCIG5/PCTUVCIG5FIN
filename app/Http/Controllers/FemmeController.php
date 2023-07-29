@@ -60,7 +60,7 @@ class FemmeController extends AppBaseController
 
         Flash::success('Femme saved successfully.');
 
-        return redirect(route('femmes.index'));
+        return redirect()->back();
     }
 
     /**
@@ -124,8 +124,7 @@ class FemmeController extends AppBaseController
         $femme = $this->femmeRepository->update($request->all(), $id);
 
         Flash::success('Femme updated successfully.');
-
-        return redirect(route('femmes.index'));
+        return redirect()->back();
     }
 
     /**
@@ -151,6 +150,6 @@ class FemmeController extends AppBaseController
 
         Flash::success('Femme deleted successfully.');
 
-        return redirect(route('femmes.index'));
+        return redirect()->back();
     }
 }

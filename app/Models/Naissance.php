@@ -81,7 +81,7 @@ class Naissance extends Model
         'lieuNaissance_nais' => 'required|string|max:191',
         'mode_nais' => 'required|string|max:191',
         'lieuHabitation_nais' => 'required|string|max:191',
-        'statutChef' => 'required|string|max:191',
+        'statutChef' => 'string|max:191',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',

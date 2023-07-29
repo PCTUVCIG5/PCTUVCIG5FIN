@@ -182,3 +182,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('femmes.index') }}"
+       class="nav-link {{ Request::is('femmes*') ? 'active' : '' }}">
+        <p>Femmes</p>
+    </a>
+</li>
+
+

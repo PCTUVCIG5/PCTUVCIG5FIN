@@ -9,14 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Homme
  * @package App\Models
- * @version July 29, 2023, 3:39 pm UTC
+ * @version July 29, 2023, 4:33 pm UTC
  *
- * @property \App\Models\Habitant $habitant
  * @property \Illuminate\Database\Eloquent\Collection $divoces
  * @property \Illuminate\Database\Eloquent\Collection $mariages
  * @property \Illuminate\Database\Eloquent\Collection $naissances
- * @property string $idHom
- * @property integer $habitant_id
+ * @property string $nomHomm
+ * @property string $prenHomm
+ * @property string $dateNHomm
+ * @property string $lieuNHomm
+ * @property string $sexeHomm
+ * @property string $telHomm
+ * @property string $image
  */
 class Homme extends Model
 {
@@ -35,8 +39,13 @@ class Homme extends Model
 
 
     public $fillable = [
-        'idHom',
-        'habitant_id'
+        'nomHomm',
+        'prenHomm',
+        'dateNHomm',
+        'lieuNHomm',
+        'sexeHomm',
+        'telHomm',
+        'image'
     ];
 
     /**
@@ -46,8 +55,13 @@ class Homme extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'idHom' => 'string',
-        'habitant_id' => 'integer'
+        'nomHomm' => 'string',
+        'prenHomm' => 'string',
+        'dateNHomm' => 'date',
+        'lieuNHomm' => 'string',
+        'sexeHomm' => 'string',
+        'telHomm' => 'string',
+        'image' => 'string'
     ];
 
     /**
@@ -56,20 +70,17 @@ class Homme extends Model
      * @var array
      */
     public static $rules = [
-        'idHom' => 'required|string|max:191',
+        'nomHomm' => 'required|string|max:191',
+        'prenHomm' => 'required|string|max:191',
+        'dateNHomm' => 'required',
+        'lieuNHomm' => 'required|string|max:191',
+        'sexeHomm' => 'required|string|max:191',
+        'telHomm' => 'required|string|max:191',
+        'image' => 'required|string|max:191',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'habitant_id' => 'required'
+        'updated_at' => 'nullable'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function habitant()
-    {
-        return $this->belongsTo(\App\Models\Habitant::class, 'habitant_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
