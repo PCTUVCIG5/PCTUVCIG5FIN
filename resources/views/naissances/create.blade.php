@@ -20,7 +20,8 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'naissances.store']) !!}
+            <form action="{{ route('naissances.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
 
             <div class="card-body">
 

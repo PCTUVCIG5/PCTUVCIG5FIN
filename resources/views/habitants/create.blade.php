@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Habitant</h1>
+                    <h1>AJOUTER UN NOUVEAU MEMBRE DU VILLAGE</h1>
                 </div>
             </div>
         </div>
@@ -29,8 +29,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('habitants.index') }}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('ENREGISTRER', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('habitants.index') }}" class="btn btn-danger">FERMER</a>
             </div>
 
             {!! Form::close() !!}

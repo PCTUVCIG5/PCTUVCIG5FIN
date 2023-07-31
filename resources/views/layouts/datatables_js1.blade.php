@@ -162,3 +162,4 @@
   }
   // DropzoneJS Demo Code End
 </script>
+<!-- <script src="{{ asset('scriptactua.js') }}"></script> -->

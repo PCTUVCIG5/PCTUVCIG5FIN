@@ -2,14 +2,14 @@
     <table class="table" id="habitants-table">
         <thead>
         <tr>
-        <th>No</th>
-        <th>Nomhabi</th>
-        <th>Prenhabi</th>
-        <th>Datenhabi</th>
-        <th>Lieunhabi</th>
-        <th>Sexehabi</th>
-        <th>Telhabi</th>
-        <th>Image</th>
+        <th>N°</th>
+        <th>NOM</th>
+        <th>PRENOMS</th>
+        <th>DATE DE NAISSANCE</th>
+        <th>LIEU DE NAISSANCE</th>
+        <th>CIVILITE</th>
+        <th>CONTACT</th>
+        <th>PHOTO</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
@@ -23,7 +23,9 @@
             <td>{{ $habitant->lieuNHabi }}</td>
             <td>{{ $habitant->sexeHabi }}</td>
             <td>{{ $habitant->telHabi }}</td>
-            <td><img class="img-circle img-bordered-sm" src="{{ Storage::url($habitant->image) }}" width="50px" alt="user image"></td>
+            <td>
+                <img class="img-circle img-bordered-sm" src="{{ isset($habitant) ? Storage::url($habitant->image) : '' }}" width="60px" alt="user image">
+            </td>
                 <td width="120">
                     {!! Form::open(['route' => ['habitants.destroy', $habitant->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

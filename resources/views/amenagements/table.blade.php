@@ -2,7 +2,7 @@
     <table class="table" id="amenagements-table">
         <thead>
         <tr>
-            <th>photo</th>
+            <!-- <th>photo</th> -->
             <th>NOM</th>
             <th>PRENOMS</th>
             <th>SEXE</th>
@@ -15,7 +15,7 @@
         <tbody>
         @foreach($amenagements as $amenagement)
             <tr>
-                <td><img class="img-circle img-bordered-sm" src="{{ Storage::url($amenagement->habitant->image) }}" width="50px" alt="user image"></td>
+                <td><img class="img-circle img-bordered-sm" src="{{ isset($amenagement) ? Storage::url($amenagement->habitant->image) : '' }}" width="50px" alt="user image"></td>
                 <td>{{ $amenagement->habitant->nomHabi }}</td>
                 <td>{{ $amenagement->habitant->prenHabi }}</td>
                 <td>{{ $amenagement->habitant->sexeHabi }}</td>

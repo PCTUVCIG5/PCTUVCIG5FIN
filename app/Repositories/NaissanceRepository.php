@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class NaissanceRepository
  * @package App\Repositories
- * @version July 29, 2023, 12:06 pm UTC
+ * @version July 29, 2023, 8:26 pm UTC
 */
 
 class NaissanceRepository extends BaseRepository
@@ -24,6 +24,7 @@ class NaissanceRepository extends BaseRepository
         'mode_nais',
         'lieuHabitation_nais',
         'statutChef',
+        'image',
         'homme_id',
         'femme_id'
     ];

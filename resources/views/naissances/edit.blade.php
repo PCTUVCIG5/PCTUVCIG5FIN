@@ -21,7 +21,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('naissances.fields')
+                    @include('naissances.fieldsE')
                 </div>
             </div>
 

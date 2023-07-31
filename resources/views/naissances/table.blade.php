@@ -10,7 +10,7 @@
         <th>Lieu habitation</th>
         <th>nom de la mere</th>
         <th>nom du pere</th>
-            <!-- <th colspan="3">Action</th> -->
+        <th colspan="3">Action</th>
             <th>statut</th>
         </tr>
         </thead>
@@ -25,7 +25,7 @@
             <td>{{ $naissance->lieuHabitation_nais }}</td>
             <td>{{ $naissance->homme->nomHomm }} {{ $naissance->homme->prenHomm }}</td>
             <td>{{ $naissance->femme->nomFemm }} {{ $naissance->femme->prenFemm }}</td>
-                <!-- <td width="120">
+            <td width="120">
                     {!! Form::open(['route' => ['naissances.destroy', $naissance->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
                         <a href="{{ route('naissances.show', [$naissance->id]) }}"
@@ -39,7 +39,7 @@
                         {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}
-                </td> -->
+                </td>
                 <td width="120">
                 @if($naissance->statutChef==1)
                 <a href="{{ url('change-status-naissance/'.$naissance->id) }}" onclick="return confirm('Voulez-vous desactiver {{ $naissance->name }}?')" class="btn btn-sm btn-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Validé</a>

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Naissance
  * @package App\Models
- * @version July 29, 2023, 12:06 pm UTC
+ * @version July 29, 2023, 8:26 pm UTC
  *
  * @property \App\Models\Femme $femme
  * @property \App\Models\Homme $homme
@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $mode_nais
  * @property string $lieuHabitation_nais
  * @property string $statutChef
+ * @property string $image
  * @property integer $homme_id
  * @property integer $femme_id
  */
@@ -47,6 +48,7 @@ class Naissance extends Model
         'mode_nais',
         'lieuHabitation_nais',
         'statutChef',
+        'image',
         'homme_id',
         'femme_id'
     ];
@@ -65,6 +67,7 @@ class Naissance extends Model
         'mode_nais' => 'string',
         'lieuHabitation_nais' => 'string',
         'statutChef' => 'string',
+        'image' => 'string',
         'homme_id' => 'integer',
         'femme_id' => 'integer'
     ];
@@ -81,7 +84,8 @@ class Naissance extends Model
         'lieuNaissance_nais' => 'required|string|max:191',
         'mode_nais' => 'required|string|max:191',
         'lieuHabitation_nais' => 'required|string|max:191',
-        'statutChef' => 'string|max:191',
+        'statutChef' => 'required|string|max:191',
+        'image' => 'required|string|max:255',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',

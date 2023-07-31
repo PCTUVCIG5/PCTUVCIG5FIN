@@ -17,11 +17,12 @@
 
         <div class="card">
 
-            {!! Form::model($habitant, ['route' => ['habitants.update', $habitant->id], 'method' => 'patch']) !!}
-
+            {!! Form::model($habitant, ['route' => ['habitants.update', $habitant->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
+            @csrf
+            
             <div class="card-body">
                 <div class="row">
-                    @include('habitants.fields')
+                    @include('habitants.fieldsE')
                 </div>
             </div>
 

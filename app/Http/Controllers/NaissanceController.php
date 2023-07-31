@@ -53,8 +53,6 @@ class NaissanceController extends AppBaseController
         $femmes = DB::table('femmes')->get();
 
     return view('naissances.create',compact('hommes','femmes'));
-
-        return view('naissances.create');
     }
 
     /**
@@ -64,16 +62,47 @@ class NaissanceController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateNaissanceRequest $request)
-    {
-        $input = $request->all();
 
-        $naissance = $this->naissanceRepository->create($input);
+     public function store(Request $request)
+     {
+        $request->validate([
+            'nom_nais' => 'required',
+            'prenoms_nais' => 'required',
+            'dateNaissance_nais' => 'required',
+            'lieuNaissance_nais' => 'required',
+            'mode_nais' => 'required',
+            'lieuHabitation_nais' => 'required',
+            'homme_id' => 'required',
+            'femme_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+         ]);
+         $path = $request->file('image')->store('public/images');
+         $naissance = new Naissance;
+         $naissance->nom_nais = $request->nom_nais;
+         $naissance->prenoms_nais = $request->prenoms_nais;
+         $naissance->dateNaissance_nais = $request->dateNaissance_nais;
+         $naissance->lieuNaissance_nais = $request->lieuNaissance_nais;
+         $naissance->mode_nais = $request->mode_nais;
+         $naissance->lieuHabitation_nais = $request->lieuHabitation_nais;
+         $naissance->homme_id = $request->homme_id;
+         $naissance->femme_id = $request->femme_id;
+         $naissance->image = $path;
+         $naissance->save();
+      
+         return redirect()->route('naissances.index')
+                         ->with('success','naissances has been created successfully.');
+     }
 
-        Flash::success('Naissance saved successfully.');
+    // public function store(CreateNaissanceRequest $request)
+    // {
+    //     $input = $request->all();
 
-        return redirect(route('naissances.index'));
-    }
+    //     $naissance = $this->naissanceRepository->create($input);
+
+    //     Flash::success('Naissance saved successfully.');
+
+    //     return redirect(route('naissances.index'));
+    // }
 
     /**
      * Display the specified Naissance.
@@ -105,6 +134,9 @@ class NaissanceController extends AppBaseController
     public function edit($id)
     {
         $naissance = $this->naissanceRepository->find($id);
+        $hommes = DB::table('hommes')->get();
+        $femmes = DB::table('femmes')->get();
+
 
         if (empty($naissance)) {
             Flash::error('Naissance not found');
@@ -112,7 +144,7 @@ class NaissanceController extends AppBaseController
             return redirect(route('naissances.index'));
         }
 
-        return view('naissances.edit')->with('naissance', $naissance);
+        return view('naissances.edit',compact('hommes','femmes','naissance'));
     }
 
     /**

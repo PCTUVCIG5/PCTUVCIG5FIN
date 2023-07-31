@@ -81,7 +81,7 @@ class Habitant extends Model
         'lieuNHabi' => 'required|string|max:191',
         'sexeHabi' => 'required|string|max:191',
         'telHabi' => 'required|string|max:191',
-        'image' => 'required|string|max:255',
+        'image' => 'nullable|image|max:1024|mimes:jpg,jpeg,png',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'

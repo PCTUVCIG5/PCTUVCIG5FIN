@@ -29,6 +29,7 @@ class NaissanceFactory extends Factory
         'mode_nais' => $this->faker->word,
         'lieuHabitation_nais' => $this->faker->word,
         'statutChef' => $this->faker->word,
+        'image' => $this->faker->word,
         'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s'),
