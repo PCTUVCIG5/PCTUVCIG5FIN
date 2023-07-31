@@ -2,7 +2,7 @@
     <table class="table" id="amenagements-table">
         <thead>
         <tr>
-            <!-- <th>photo</th> -->
+            <th>photo</th>
             <th>NOM</th>
             <th>PRENOMS</th>
             <th>SEXE</th>
